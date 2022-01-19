@@ -9,7 +9,7 @@ class Student:
         self.grade = grade
         self.fname = fname
         self.lname = lname
-        self.classes = {1:"Sarkar"}
+        self.classes = {}
 
 
     def add_classes(self, period, teacher):
@@ -21,6 +21,7 @@ class Student:
 
 student1 = Student("Leland", 9, "Arnav", "Vajirkar")
 Student.add_student(student1)
+student1.add_classes(1, "Sarkar")
 student1.add_classes(2, "Yen")
 
 
@@ -32,12 +33,12 @@ df.set_index("Name", inplace=True)
 open_teachers = []
 def get_tutorial(student, day):
     for period in student.classes:
-        if str(df.loc[student.classes[period], day]) == "open": #line doesnt update after first time so that needs fixing
+        if str(df.loc[student.classes[period]].loc[day]) == "open": #line doesnt update after first time so that needs fixing
             open_teachers.append(student.classes[period])
 
 
 
-get_tutorial(student1, "Wenesday")
+get_tutorial(student1, "Tuesday")
 print(open_teachers)
 
 
